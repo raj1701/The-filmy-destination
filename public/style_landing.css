@@ -1,0 +1,55 @@
+
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
+.landing {
+    align-items: center;
+    text-align: center;
+    color: antiquewhite;
+    background-color: #222831;
+    height: 500px;
+}
+
+.intro-container {
+    padding-top: 10rem;
+    color: white;
+}
+
+#home {
+    margin-top: 5rem;
+}
+
+.custom-card-img {
+    width: 100%;
+    height: 250px;
+}
+
+.carousel-box {
+    background-color: #FFD369;
+    margin-top: 2rem;
+    height: 30rem; 
+    width: auto; 
+}
+
+.custom-carousel-img {
+    border-radius: 100%;
+    height: 200px;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.carousel-text-container{
+    width: 40%;
+    height: auto;
+}
+
+.carousel-text {
+    float: center;
+    text-align: center;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    color: black;
+}

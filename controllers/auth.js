@@ -42,7 +42,7 @@ exports.login = async (req,res) => {
                     httpOnly: true
                 }
                 res.cookie('jwt', token , cookieOptions );
-                res.status(200).redirect("/");
+                res.status(200).redirect("/landingpage");
             }
         });
 
@@ -98,3 +98,27 @@ exports.register = (req,res) => {
     });
     //res.send("Form Submitted");
 }
+
+exports.logout = (req,res,next) => {
+    // console.log(req);
+    // if(req.cookies.token){
+    //   res.clearCookie('token');
+    //   return res.render('login', {
+    //     message: 'Logged out'
+    // });
+    // }
+    // else{
+    //     console.log("could not logout");
+    //     // return res.redirect('/landingpage');
+        // return res.render('login', {
+        //     message: 'Logged out'
+        // });
+    // }
+    //req.logout();
+    // console.log(req.session);
+    // req.session = null;
+    
+    return res.render('login', {
+        message: 'Logged out'
+    });
+};
