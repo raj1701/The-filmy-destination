@@ -17,7 +17,6 @@ const db = mysql.createConnection({
 
 const publicDirectory = path.join(__dirname,'./public');
 app.use(express.static(publicDirectory));
-
 //Parsing form data
 app.use(express.urlencoded({extended:false}));
 //Parse Json body
