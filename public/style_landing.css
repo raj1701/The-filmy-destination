@@ -16,9 +16,6 @@ h1, h2, h3, h4 {
     color: white;
 }
 
-#home {
-    margin-top: 5rem;
-}
 
 .custom-card-img {
     width: 100%;
@@ -28,7 +25,7 @@ h1, h2, h3, h4 {
 .carousel-box {
     background-color: #FFD369;
     margin-top: 2rem;
-    height: 30rem; 
+    height: 25rem; 
     width: auto; 
 }
 

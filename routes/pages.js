@@ -17,5 +17,9 @@ router.get('/landingpage', (req,res) => {
     res.render('landingpage');
 })
 
+router.get('/contentpage', (req,res) => {
+    res.render('contentpage');
+})
+
 
 module.exports = router;
