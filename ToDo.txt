@@ -1,0 +1,4 @@
+1. Make the Card itself a link to its content
+2. Desing content page
+3. Make the card pop up
+4. Give somekind of pagination to display more cards
