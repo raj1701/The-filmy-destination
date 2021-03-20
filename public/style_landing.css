@@ -50,3 +50,15 @@ h1, h2, h3, h4 {
     vertical-align: middle;
     color: black;
 }
+.row{
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.card-title{
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 35px;
+}
+

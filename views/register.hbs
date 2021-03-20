@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body style="background-image: url(../pics/mainpageback.jpg);">
-    
+
     <nav>
         <h4>
             THE FILMY DESTINATION
@@ -21,19 +21,33 @@
         </ul>
     </nav>
     <div class="container mt-4">
-        <div class="jumbotron">
-            <!--<h1 class="display-4">Login project</h1>-->
-            <p class="lead">
-                WELCOME TO YOUR ULTIMATE ENTERTAINMENT GUIDE
-            </p>
-            <!--<hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
-            <!--<p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>-->
+        <div class="card">
+            <div class="card-header">
+                Register form
+            </div>
+            <div class="card-body">
+                <form action="/auth/register" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirm">Confirm Password</label>
+                        <input type="password" class="form-control" id="password_confirm" placeholder="Enter Password again" name="password_confirm">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register User</button>
+                </form>
+            </div>
         </div>
+        {{#if message }}
+            <h4 class="alert alert-danger mt-4">{{message}}</h4>
+        {{/if}}
     </div>
-
+    
 
 
 
