@@ -44,8 +44,8 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                   </li>
                 </ul>
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="/search" method="POST">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_parameter">
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <form class="d-flex" action="/auth/logout" method="GET">
@@ -65,17 +65,19 @@
         <!-- Content Body -->
 
         <div class="row" >
+          <h1>Most popular movies</h1>
+          {{#each results}}
             <div class="col-3">
                 <div class="card" style="height: 600px;">
-                    <img src="https://www.washingtonpost.com/graphics/2019/entertainment/oscar-nominees-movie-poster-design/img/black-panther-web.jpg" class="card-img-top custom-card-img" alt="...">
+                    <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Movie 1</h5>
+                      <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
                       <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">5 star</li>
-                      <li class="list-group-item">Sanjay leela</li>
-                      <li class="list-group-item">SRK</li>
+                      <li class="list-group-item">{{this.rating}}</li>
+                      <li class="list-group-item">{{this.release_date}}</li>
+                      <li class="list-group-item"></li>
                     </ul>
                     <div class="card-body">
                       <a href="#" class="card-link">Card link</a>
@@ -83,7 +85,32 @@
                     </div>
                   </div>
             </div>
-            <div class="col-3">
+          {{/each}}
+
+          {{#if results_latest}}
+            <h1>Most Recently added</h1>
+            {{#each results_latest}}
+              <div class="col-3">
+                  <div class="card" style="height: 600px;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{this.rating}}</li>
+                        <li class="list-group-item">{{this.release_date}}</li>
+                        <li class="list-group-item"></li>
+                      </ul>
+                      <div class="card-body">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                      </div>
+                    </div>
+              </div>
+            {{/each}} 
+          {{/if}}
+            {{!-- <div class="col-3">
                 <div class="card" style="height: 600px;">
                     <img src="https://www.joblo.com/assets/images/joblo/posters/2019/01/IO-poster-1.jpg" class="card-img-top custom-card-img" alt="...">
                     <div class="card-body">
@@ -137,7 +164,7 @@
                     </div>
                   </div>
             </div>
-        </div>
+        </div> --}}
 
       <!-- Pagination Code-->
         {{!-- <nav aria-label="page navigation">
