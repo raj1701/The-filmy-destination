@@ -61,6 +61,13 @@ router.get('/landingpage', (req,res) => {
 
 router.get('/content', (req,res) => {
     let title = req.query.title;
+    var userid = parseInt(req.cookies.userid);
+    db.query("INSERT INTO user_watched values(?,?); ",[userid,title], async (error,results) => {
+        if(error){
+            console.log(error);
+        }
+        else console.log("success");
+    });
     db.query("UPDATE movies set popularity=popularity+1 where title = ?;",[title], async (error,results) => {
         if(error){
             console.log(error);
@@ -127,6 +134,30 @@ router.post('/feedback_submit', (req,res) => {
             res.render('feedback',{
                 message : "Feedback submitted successfully"
             })
+        }
+    });
+})
+
+router.get('/profile', (req,res) => {
+    var userid = parseInt(req.cookies.userid);
+    db.query("SELECT * FROM feedback where userid = ?;",[userid], async (error,results) =>{
+        if(error){
+            console.log(error);
+            res.send("Some error");
+        }
+        else {
+            db.query("SELECT * FROM movies natural join user_watched join user on user.id=user_watched.userid where userid=?",[userid], async (error,results_watched) => {
+                if(error){
+                    console.log(error);
+                    res.send(error);
+                }
+                else {
+                    res.render('profilepage',{
+                        results : results,
+                        results_watched : results_watched
+                    });
+                }
+            });
         }
     });
 })
