@@ -21,5 +21,12 @@ router.get('/contentpage', (req,res) => {
     res.render('contentpage');
 })
 
+router.get('/personpage', (req,res) => {
+    res.render('personpage');
+})
+
+router.get('/feedback', (req,res) => {
+    res.render('feedback');
+})
 
 module.exports = router;
