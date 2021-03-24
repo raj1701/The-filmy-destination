@@ -76,21 +76,25 @@ router.get('/content', (req,res) => {
         }
         else console.log("Success")
     });
-    db.query("SELECT name FROM celebs join movieassociations on celebs.id=movieassociations.celebid join movies on movies.id=movieassociations.movieid where title = ? ",[title], async (error,results) => {
+    db.query("SELECT * FROM celebs join movieassociations on celebs.id=movieassociations.celebid join movies on movies.id=movieassociations.movieid where title = ? ",[title], async (error,results) => {
         if(error){
             console.log(error);
             res.send("Some error");
         }
-        
-
         else {
-            console.log(results);
-            
-            res.render('contentpage',{
-                results : results,
-                title : title,
-                link:results[0].link
+            db.query("SELECT * FROM movies where title = ? ",[title], async (error,movie) => {
+                 if(error){
+                     console.log(error);
+                     res.send("Some error");
+                 }
+                 else{
+                     res.render('contentpage',{
+                         results : results,
+                         movie : movie
+                     });
+                 }
             });
+
         }
     });
 })

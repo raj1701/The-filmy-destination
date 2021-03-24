@@ -65,14 +65,15 @@
         <!-- Content Body -->
 
         <div class="row" >
-          <h1>Most popular movies</h1>
+          <h1 class="heading">MOST POPULAR MOVIES</h1>
+          <br>
           {{#each results}}
             <div class="col-3">
-                <div class="card" style="height: 600px;">
+                <div class="card">
                     <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
                     <div class="card-body">
                       <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
-                      <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
+                      <p class="card-text" style="height: 100px;">{{this.about}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">{{this.rating}}</li>
@@ -88,14 +89,14 @@
           {{/each}}
 
           {{#if results_latest}}
-            <h1>Most Recently added</h1>
+            <h1 class="heading">LATEST CONTENT</h1>
             {{#each results_latest}}
               <div class="col-3">
-                  <div class="card" style="height: 600px;">
+                  <div class="card">
                       <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
                       <div class="card-body">
                         <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
-                        <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
+                        <p class="card-text" style="height: 100px;">{{this.about}}</p>
                       </div>
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{this.rating}}</li>

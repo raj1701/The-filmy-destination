@@ -53,7 +53,7 @@ nav li a:hover{
 
 .card{
     background-color: #a9bdbd;
-    width: 650px;
+    width: 500px;
     position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);
 }
 

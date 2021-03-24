@@ -41,23 +41,23 @@
             </div>
         </nav>
     {{!-- Navigation Bar ends     --}}
-    <img src="../pics/teneposterfinal7.jpg" alt="Film Poster" style="">
-    {{!-- {{#if results}}
+    {{#each movie}}
+    <img src="{{this.link}}" alt="Film Poster">
     <div class="information">
-        <h1>{{this.title}}</h1>
-        <h4>SYNOPSIS</h4>
-        <p style="height: 120px;">A secret agent is given a single word as his weapon and sent to prevent the onset of World War III. He must travel through time and bend the laws of nature in order to be successful in his mission.</p>
-        <h4>CAST & CREW</h4>
-        <p style="height: 100px;">Director : Christopher Nolan<br>Cast: John David Washington, Robert Pattinson, Elizabeth Debicki<br>Music : Ludwig Göransson</p>
-        <h4>RATING : 4.9/5</h4>
-        <h4>STREAM NOW : link</h4>
-    </div>
-    {{/if}} --}}
-    <div class="information">
-      <h1>{{title}}</h1>
-      <h3>Cast and crew</h3>
+      <h1>{{this.title}}</h1>
+      <h4>SYNOPSIS</h4>
+      <p style="height: 120px;">{{this.synopsis}}</p>
+      <h4>CAST & CREW</h4>
+      {{/each}}
+      <p>  
       {{#each results}}
-        <h4>{{this.name}}</h4>
+        <h5>{{this.name}}</h5>
+      {{/each}}
+      </p>
+      {{#each movie}}
+      <br>
+      <h4>RATING : {{this.rating}}</h4>
+      <h4>STREAM NOW : {{this.slink}}</h4>
       {{/each}}
     </div>
 
@@ -65,3 +65,4 @@
 
 </body>
 </html>
+
