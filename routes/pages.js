@@ -30,6 +30,7 @@ router.get('/landingpage', (req,res) => {
     db.query('SELECT * FROM movies order by popularity desc limit 4', async (error,results) => {
         console.log(results);
         console.log(results[0].link);
+        
         if(error){
             console.log(error);
             res.send("Some error");
@@ -41,6 +42,7 @@ router.get('/landingpage', (req,res) => {
                     res.send("Some error")
                 }
                 else{
+                    // var date =  results[0].recently_added;
                     res.render('landingpage',{
                         results : results,
                         results_latest : results_latest
@@ -83,6 +85,7 @@ router.get('/content', (req,res) => {
 
         else {
             console.log(results);
+            
             res.render('contentpage',{
                 results : results,
                 title : title,
