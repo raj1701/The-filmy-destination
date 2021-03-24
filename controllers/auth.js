@@ -41,6 +41,8 @@ exports.login = async (req,res) => {
                     httpOnly: true
                 }
                 res.cookie('jwt', token , cookieOptions );
+                res.cookie("userid", id);
+                // window.localStorage.setItem('userid', id);
                 res.status(200).redirect("/landingpage");
             }
         });
@@ -116,7 +118,8 @@ exports.logout = (req,res,next) => {
     //req.logout();
     // console.log(req.session);
     // req.session = null;
-    
+    res.clearCookie("userid");
+    res.clearCookie("jwt");
     return res.render('login', {
         message: 'Logged out'
     });

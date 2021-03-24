@@ -19,40 +19,40 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/landingpage">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="#carouselExampleIndicators">Feedback</a>
+                    <a class="nav-link active" href="/feedback">Feedback</a>
                   </li>
                   
                   <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                   </li>
                 </ul>
-                <form class="d-flex" action="/search" method="POST">
+                {{!-- <form class="d-flex" action="/search" method="POST">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_parameter">
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <form class="d-flex" action="/auth/logout" method="GET">
                   <button class="btn btn-outline-success" type="submit">Logout</button>
-                </form>
+                </form> --}}
               </div>
             </div>
         </nav>
     <div class="container mt-4">
         <div class="card" style="background-color: #a9bdbd;width: 650px;position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);">
             <div class="card-body">
-                <form action="/auth/register" method="POST">
+                <form action="/feedback_submit" method="POST">
                     <div class="form-group">
                         <label for="username">Please give your valuable feedback and comments</label>
-                        <input type="text" class="form-control" id="feedback" placeholder="Give Feedback" name="feedback" style="height: 100px;" maxlength="150">
+                        <textarea name="feedback" rows="5" cols="82" placeholder="Give feedback" id="feedback"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit Feedback</button>
                 </form>
             </div>
         </div>
         {{#if message }}
-            <h4 class="alert alert-danger mt-4">{{message}}</h4>
+            <h4 class="alert alert-success mt-4">{{message}}</h4>
         {{/if}}
     </div>
     

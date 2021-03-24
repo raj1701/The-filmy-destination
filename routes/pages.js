@@ -114,5 +114,21 @@ router.post('/search', (req,res) => {
     });
 })
 
+router.post('/feedback_submit', (req,res) => {
+    var userid = parseInt(req.cookies.userid);
+    var feedback = req.body.feedback;
+    db.query("INSERT INTO feedback values (?,?);",[userid,feedback], async (error,results) => {
+        if(error){
+            console.log(error);
+            res.send("Some error");
+        }
+        else {
+            console.log(results);
+            res.render('feedback',{
+                message : "Feedback submitted successfully"
+            })
+        }
+    });
+})
 
 module.exports = router;
