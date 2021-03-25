@@ -42,6 +42,12 @@ router.get('/landingpage', (req,res) => {
                     res.send("Some error")
                 }
                 else{
+                    for(i in results_latest){
+                        results_latest[i].rating_100=results_latest[i].rating*10;
+                    }
+                    for(i in results){
+                        results[i].rating_100=results[i].rating*10;
+                    }
                     // var date =  results[0].recently_added;
                     res.render('landingpage',{
                         results : results,
@@ -134,10 +140,11 @@ router.post('/search', (req,res) => {
         }
         else {
             console.log(results);
-            var results_latest=null;
+            for(i in results){
+                results[i].rating_100=results[i].rating*10;
+            }
             res.render('landingpage',{
                 results : results,
-                results_latest : results_latest
             });
         }
     });
@@ -182,6 +189,109 @@ router.get('/profile', (req,res) => {
             });
         }
     });
+})
+
+
+router.get('/genre', (req,res) => {
+    res.render('select_genre');
+})
+
+router.post('/genre_select', (req,res) => {
+    var genre= '%'+req.body.genre+'%';
+    db.query("SELECT * FROM movies where genre like ? order by popularity desc limit 8; ",[genre], async (error,results_genre) => {
+        if(error){
+            console.log(error);
+            res.send(error);
+        }
+        else{
+            console.log(results_genre);
+            for(i in results_genre){
+                results_genre[i].rating_100=results_genre[i].rating*10;
+            }
+            res.render('landingpage',{
+                results_genre : results_genre,
+                genre : req.body.genre
+            })
+        }
+    })
+})
+
+router.get('/celeb_star', (req,res) => {
+    res.render('select_celeb');
+})
+
+router.post('/celeb_select', (req,res) => {
+    var celeb= '%'+req.body.celeb+'%';
+    db.query("SELECT * FROM movies where id in (select movies.id from movies join movieassociations on movies.id=movieassociations.movieid join celebs on celebs.id=movieassociations.celebid where name like ? ); ",[celeb], async (error,results_celeb) => {
+        if(error){
+            console.log(error);
+            res.send(error);
+        }
+        else{
+            console.log(results_celeb);
+            for(i in results_celeb){
+                results_celeb[i].rating_100=results_celeb[i].rating*10;
+            }
+            res.render('landingpage',{
+                results_celeb : results_celeb,
+                celeb : req.body.celeb
+            })
+        }
+    })
+})
+
+router.get('/rating', (req,res) => {
+    db.query("SELECT * FROM movies order by rating desc limit 8;",[], async (error,results_rating) => {
+        if(error){
+            console.log(error);
+            res.send(error);
+        }
+        else{
+            console.log(results_rating);
+            for(i in results_rating){
+                results_rating[i].rating_100=results_rating[i].rating*10;
+            }
+            res.render('landingpage',{
+                results_rating : results_rating
+            })
+        }
+    });
+})
+
+router.get('/popularity', (req,res) => {
+    db.query("SELECT * FROM movies order by popularity desc limit 8;",[], async (error,results_popularity) => {
+        if(error){
+            console.log(error);
+            res.send(error);
+        }
+        else{
+            console.log(results_popularity);
+            for(i in results_popularity){
+                results_popularity[i].rating_100=results_popularity[i].rating*10;
+            }
+            res.render('landingpage',{
+                results_popularity : results_popularity
+            })
+        }
+    })
+})
+
+router.get('/coming_soon', (req,res) => {
+    db.query("SELECT * FROM movies where release_date > '2020-01-01'",[], async (error,results_coming_soon) => {
+        if(error){
+            console.log(error);
+            res.send(error);
+        }
+        else{
+            console.log(results_coming_soon);
+            for(i in results_coming_soon){
+                results_coming_soon[i].rating_100=results_coming_soon[i].rating*10;
+            }
+            res.render('landingpage',{
+                results_coming_soon : results_coming_soon
+            })
+        }
+    })
 })
 
 module.exports = router;

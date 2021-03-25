@@ -17,7 +17,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <!-- CSS Styles -->
         <link rel="stylesheet" href="/style_landing.css">
-
     </head>
     <body style="background-color: #56a8a8;">
         <!--[if lt IE 7]>
@@ -43,9 +42,22 @@
                   <li class="nav-item">
                     <a class="nav-link active" href="/profile" >Profile</a>
                   </li>
+                  <div class="dropdown nav-item">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Search by
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="/genre">Genre</a></li>
+                      <li><a class="dropdown-item" href="/celeb_star">Celebrity starring</a></li>
+                      <li><a class="dropdown-item" href="/rating">Rating</a></li>
+                      <li><a class="dropdown-item" href="/popularity">Popularity</a></li>
+                      <li><a class="dropdown-item" href="/coming_soon">Coming soon</a></li>
+                    </ul>
+                  </div>
                 </ul>
+
                 <form class="d-flex" action="/search" method="POST">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_parameter">
+                  <input class="form-control me-2" type="search" placeholder="Search by movie" aria-label="Search" name="search_parameter">
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <form class="d-flex" action="/auth/logout" method="GET">
@@ -63,22 +75,26 @@
         <hr>
         <div id="home"></div>
         <!-- Content Body -->
-
+        {{#if results}}
         <div class="row" >
           <h1 class="heading">MOST POPULAR MOVIES</h1>
           <br>
           {{#each results}}
             <div class="col-3">
-                <div class="card">
+                <div class="card" >
                     <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
                     <div class="card-body">
                       <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
                       <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">{{this.rating}}</li>
-                      <li class="list-group-item">{{this.release_date}}</li>
-                      <li class="list-group-item"></li>
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
                     </ul>
                     {{!-- <div class="card-body">
                       <a href="#" class="card-link">Card link</a>
@@ -87,11 +103,15 @@
                   </div>
             </div>
           {{/each}}
+          {{/if}}
 
           {{#if results_latest}}
             <h1 class="heading">LATEST CONTENT</h1>
+
+            
             {{#each results_latest}}
               <div class="col-3">
+                <div class="carousel-inner w-100" role="listbox">
                   <div class="card">
                       <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
                       <div class="card-body">
@@ -99,17 +119,160 @@
                         <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
                       </div>
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{this.rating}}</li>
-                        <li class="list-group-item">{{this.release_date}}</li>
-                        <li class="list-group-item"></li>
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
                       </ul>
                       {{!-- <div class="card-body">
                         <a href="#" class="card-link">Card link</a>
                         <a href="#" class="card-link">Another link</a>
                       </div> --}}
                     </div>
+                  </div>
+              </div>
+          
+            {{/each}} 
+    
+          {{/if}}
+
+          {{#if results_rating}}
+            <div class="row">
+            <h1 class="heading">Top Rated Content</h1>
+            {{#each results_rating}}
+              <div class="col-3 ">
+                  <div class="card" style="margin-bottom: 2rem;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
+                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
+                      </ul>
+                    </div>
               </div>
             {{/each}} 
+            </div>
+          {{/if}}
+
+          {{#if results_popularity}}
+            <div class="row">
+            <h1 class="heading"> Most Popular </h1>
+            {{#each results_popularity}}
+              <div class="col-3 ">
+                  <div class="card" style="margin-bottom: 2rem;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
+                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
+                      </ul>
+                    </div>
+              </div>
+            {{/each}} 
+            </div>
+          {{/if}}
+
+
+          {{#if results_coming_soon}}
+            <div class="row">
+            <h1 class="heading"> Coming Soon </h1>
+            {{#each results_coming_soon}}
+              <div class="col-3 ">
+                  <div class="card" style="margin-bottom: 2rem;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
+                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
+                      </ul>
+                    </div>
+              </div>
+            {{/each}} 
+            </div>
+          {{/if}}
+
+          {{#if results_genre}}
+            <div class="row">
+            <h1 class="heading"> {{genre}} </h1>
+            {{#each results_genre}}
+              <div class="col-3 ">
+                  <div class="card" style="margin-bottom: 2rem;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
+                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
+                      </ul>
+                    </div>
+              </div>
+            {{/each}} 
+            </div>
+          {{/if}}
+
+          {{#if results_celeb}}
+            <div class="row">
+            <h1 class="heading"> {{celeb}} </h1>
+            {{#each results_celeb}}
+              <div class="col-3 ">
+                  <div class="card" style="margin-bottom: 2rem;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
+                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
+                      </ul>
+                    </div>
+              </div>  
+            {{/each}} 
+            </div>
           {{/if}}
             {{!-- <div class="col-3">
                 <div class="card" style="height: 600px;">
@@ -242,6 +405,7 @@
         <!-- JS Bootstrap Link -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
-
+</script>
     </body>
 </html>
+
