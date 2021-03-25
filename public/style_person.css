@@ -28,6 +28,7 @@ img{
  
 h1{
     font-size: 70px;
+    font-weight: 800;
     font-family:'Courier New', Courier, monospace;
 }
 
@@ -41,5 +42,6 @@ p{
     margin-left: 3px;
     font-size: 18px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    height: 120px;
 }
 

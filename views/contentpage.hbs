@@ -46,18 +46,17 @@
     <div class="information">
       <h1>{{this.title}}</h1>
       <h4>SYNOPSIS</h4>
-      <p style="height: 120px;">{{this.synopsis}}</p>
+      <p style="height: 120px;">{{this.about}}</p>
       <h4>CAST & CREW</h4>
       {{/each}}
-      <p>  
+      <p style="height: 80px;">  
       {{#each results}}
-        <h5>{{this.name}}</h5>
+        <a href="/person/?name={{this.name}}" style="text-decoration: none;">{{this.name}}</a><br>
       {{/each}}
       </p>
       {{#each movie}}
-      <br>
       <h4>RATING : {{this.rating}}</h4>
-      <h4>STREAM NOW : {{this.slink}}</h4>
+      <h4>STREAM NOW : <a href="{{this.slink}}">{{this.slink}}</a></h4>
       {{/each}}
     </div>
 

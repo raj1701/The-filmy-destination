@@ -24,8 +24,9 @@ img{
 }
  
 h1{
-    font-size: 60px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 70px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: 800;
 }
 
 h4{
@@ -38,6 +39,16 @@ p{
     margin-left: 3px;
     font-size: 18px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+h5{
+    margin-left: 3px;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a{
+    color: black;
+    hover: blue;
 }
 
 

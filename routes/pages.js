@@ -99,6 +99,21 @@ router.get('/content', (req,res) => {
     });
 })
 
+router.get('/person',(req,res) => {
+    let name=req.query.name;
+    db.query("select * from celebs where name= ? ",[name],async(error,person) => {
+        if(error){
+            console.log(error);
+            res.send("Some error");
+        }
+        else{
+            res.render('personpage',{
+                person : person
+            });
+        }
+    })
+})
+
 router.get('/contentpage', (req,res) => {
     res.render('contentpage');
 })
