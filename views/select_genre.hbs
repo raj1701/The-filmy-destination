@@ -47,7 +47,8 @@
                         {{!-- <label for="username">Please enter the genre</label>
                         <input type ="text" name="genre" width="25%" placeholder="Enter genre" id="feedback"></textarea> --}}
                         <div class="dropdown">
-                          <button class="btn dropdown-toggle" type="form-input" data-toggle="dropdown">Select genre
+                          <label for="genreselect">Select Genre</label>
+                          <input class="btn dropdown-toggle" type="radio" data-toggle="dropdown" id="genreselect">
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
                           {{#each results}}

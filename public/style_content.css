@@ -39,6 +39,7 @@ p{
     margin-left: 3px;
     font-size: 18px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    overflow: hidden;
 }
 h5{
     margin-left: 3px;
