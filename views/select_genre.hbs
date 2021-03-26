@@ -47,13 +47,13 @@
                         {{!-- <label for="username">Please enter the genre</label>
                         <input type ="text" name="genre" width="25%" placeholder="Enter genre" id="feedback"></textarea> --}}
                         <div class="dropdown">
-                          <button class="btn dropdown-toggle" type="form-input" data-toggle="dropdown">Select genre
+                          <button class="btn dropdown-toggle" type="form-input" data-toggle="dropdown" id="my_button">Select genre
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
                           {{#each results}}
                             <li>
                               <div class="radio">
-                                <label><input type="radio" name="genre" value={{this.genre}} checked>{{this.genre}}</label>
+                                <label><input type="radio" name="genre" value={{this.genre}} onclick="handler('{{this.genre}}')" >{{this.genre}}</label>
                               </div>
                             </li>
                           {{/each}}
@@ -75,5 +75,22 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+      var x1;
+      //for(var i=0;i<=document.getElementsByClassName("my_button_options").length;i++)
+      //{
+      //  console.log("Im here");
+      //  x1=document.getElementsByClassName("my_button_options")[i].onclick (){
+
+      //  };
+      //  x1.onclick = handler();
+      //}
+      function handler(x) {
+        x1=document.getElementById("my_button");
+        x1.innerText=x;
+        
+      }
+    </script>
+
 </body>
 </html>

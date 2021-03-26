@@ -220,7 +220,7 @@ router.get('/celeb_star', (req,res) => {
 
 router.post('/celeb_select', (req,res) => {
     var celeb= '%'+req.body.celeb+'%';
-    db.query("SELECT * FROM movies where id in (select movies.id from movies join movieassociations on movies.id=movieassociations.movieid join celebs on celebs.id=movieassociations.celebid where name like ? limit 8); ",[celeb], async (error,results_celeb) => {
+    db.query("SELECT * FROM movies where id in (select movies.id from movies join movieassociations on movies.id=movieassociations.movieid join celebs on celebs.id=movieassociations.celebid where name like ? ) limit 8; ",[celeb], async (error,results_celeb) => {
         if(error){
             console.log(error);
             res.send(error);
