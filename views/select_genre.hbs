@@ -44,14 +44,29 @@
             <div class="card-body">
                 <form action="/genre_select" method="POST">
                     <div class="form-group">
-                        <label for="username">Please enter the genre</label>
-                        <input type ="text" name="genre" width="25%" placeholder="Enter genre" id="feedback"></textarea>
+                        {{!-- <label for="username">Please enter the genre</label>
+                        <input type ="text" name="genre" width="25%" placeholder="Enter genre" id="feedback"></textarea> --}}
+                        <div class="dropdown">
+                          <button class="btn dropdown-toggle" type="form-input" data-toggle="dropdown">Select genre
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                          {{#each results}}
+                            <li>
+                              <div class="radio">
+                                <label><input type="radio" name="genre" value={{this.genre}} checked>{{this.genre}}</label>
+                              </div>
+                            </li>
+                          {{/each}}
+                          </ul>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <div>
                 </form>
             </div>
         </div>
         </div>
+        
     
 
 

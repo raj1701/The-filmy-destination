@@ -26,41 +26,22 @@ router.get('/login', (req,res) => {
     res.render('login');
 });
 
-router.get('/landingpage', (req,res) => {
-    db.query('SELECT * FROM movies order by popularity desc limit 4', async (error,results) => {
-        console.log(results);
-        console.log(results[0].link);
-        
+router.get('/landingpage', (req,res) => {     
+    db.query('SELECT * FROM movies order by release_date desc limit 8', async (error,results_latest) => {
         if(error){
             console.log(error);
-            res.send("Some error");
+            res.send("Some error")
         }
-        else {
-            db.query('SELECT * FROM movies order by release_date desc limit 4', async (error,results_latest) => {
-                if(error){
-                    console.log(error);
-                    res.send("Some error")
-                }
-                else{
-                    for(i in results_latest){
-                        results_latest[i].rating_100=results_latest[i].rating*10;
-                    }
-                    for(i in results){
-                        results[i].rating_100=results[i].rating*10;
-                    }
-                    // var date =  results[0].recently_added;
-                    res.render('landingpage',{
-                        results : results,
-                        results_latest : results_latest
-                    });
-                }
+        else{
+            for(i in results_latest){
+                results_latest[i].rating_100=results_latest[i].rating*10;
+            }
+            // var date =  results[0].recently_added;
+            res.render('landingpage',{
+                results_latest : results_latest
             });
-
         }
-        
     });
-    
-
 })
 
 // router.get('/contentpage', (req,res) => {
@@ -133,7 +114,7 @@ router.get('/feedback', (req,res) => {
 })
 router.post('/search', (req,res) => {
     let search_parameter = '%'+req.body.search_parameter+'%';
-    db.query("SELECT * FROM movies where title like ? limit 4",[search_parameter], async (error,results) => {
+    db.query("SELECT * FROM movies where title like ? limit 8",[search_parameter], async (error,results) => {
         if(error){
             console.log(error);
             res.send("Some error");
@@ -169,19 +150,24 @@ router.post('/feedback_submit', (req,res) => {
 
 router.get('/profile', (req,res) => {
     var userid = parseInt(req.cookies.userid);
-    db.query("SELECT * FROM feedback where userid = ?;",[userid], async (error,results) =>{
+    db.query("SELECT distinct * FROM feedback where userid = ? limit 4;",[userid], async (error,results) =>{
         if(error){
             console.log(error);
             res.send("Some error");
         }
         else {
-            db.query("SELECT * FROM movies natural join user_watched join user on user.id=user_watched.userid where userid=?",[userid], async (error,results_watched) => {
+            db.query("SELECT distinct * FROM movies natural join user_watched join user on user.id=user_watched.userid where userid=? limit 8",[userid], async (error,results_watched) => {
                 if(error){
                     console.log(error);
                     res.send(error);
                 }
+
                 else {
+                    for(i in results_watched){
+                        results_watched[i].rating_100=results_watched[i].rating*10;
+                    }
                     res.render('profilepage',{
+
                         results : results,
                         results_watched : results_watched
                     });
@@ -193,18 +179,30 @@ router.get('/profile', (req,res) => {
 
 
 router.get('/genre', (req,res) => {
-    res.render('select_genre');
+    db.query("Select distinct genre from movies ;",[],async (error,results) => {
+        if(error)
+        {
+            console.log(error);
+            res.send(error);
+        }
+        else{
+            res.render('select_genre',{
+                results : results
+            })
+        }
+    })
 })
 
 router.post('/genre_select', (req,res) => {
     var genre= '%'+req.body.genre+'%';
+    console.log(genre);
     db.query("SELECT * FROM movies where genre like ? order by popularity desc limit 8; ",[genre], async (error,results_genre) => {
         if(error){
             console.log(error);
             res.send(error);
         }
         else{
-            console.log(results_genre);
+            //console.log(results_genre);
             for(i in results_genre){
                 results_genre[i].rating_100=results_genre[i].rating*10;
             }
@@ -222,7 +220,7 @@ router.get('/celeb_star', (req,res) => {
 
 router.post('/celeb_select', (req,res) => {
     var celeb= '%'+req.body.celeb+'%';
-    db.query("SELECT * FROM movies where id in (select movies.id from movies join movieassociations on movies.id=movieassociations.movieid join celebs on celebs.id=movieassociations.celebid where name like ? ); ",[celeb], async (error,results_celeb) => {
+    db.query("SELECT * FROM movies where id in (select movies.id from movies join movieassociations on movies.id=movieassociations.movieid join celebs on celebs.id=movieassociations.celebid where name like ? limit 8); ",[celeb], async (error,results_celeb) => {
         if(error){
             console.log(error);
             res.send(error);
@@ -277,7 +275,7 @@ router.get('/popularity', (req,res) => {
 })
 
 router.get('/coming_soon', (req,res) => {
-    db.query("SELECT * FROM movies where release_date > '2020-01-01'",[], async (error,results_coming_soon) => {
+    db.query("SELECT * FROM movies where release_date > '2020-01-01' order by release_date desc limit 8",[], async (error,results_coming_soon) => {
         if(error){
             console.log(error);
             res.send(error);

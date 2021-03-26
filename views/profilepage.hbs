@@ -64,32 +64,36 @@
         <div id="home"></div>
         <!-- Content Body -->
 
-        <div class="row" >
-          <h1>Movies visited by you</h1>
-          {{#each results_watched}}
-            <div class="col-3">
-                <div class="card" style="height: 600px;">
-                    <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
-                      <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
+          {{#if results_watched}}
+            <div class="row">
+            <h1 class="heading"> Movies watched by you </h1>
+            {{#each results_watched}}
+              <div class="col-3 ">
+                  <div class="card" style="margin-bottom: 2rem;">
+                      <img src="{{this.link}}" class="card-img-top custom-card-img" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
+                        <p class="card-text" style="height: 100px;">{{this.synopsis}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          Rating : {{this.rating}}
+                          <br>
+                           <div class="progress">
+                            <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
+                          </div>
+                        </li>
+                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
+                      </ul>
                     </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">{{this.rating}}</li>
-                      <li class="list-group-item">{{this.release_date}}</li>
-                      <li class="list-group-item"></li>
-                    </ul>
-                    <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
-                    </div>
-                  </div>
+              </div>
+            {{/each}} 
             </div>
-          {{/each}}
+          {{/if}}
 
           {{#if results}}
-            <h1>Your feedbacks</h1>
-            {{#each results}}
+            
+          
               {{!-- <div class="col-3">
                   <div class="card" style="height: 600px;">
                       
@@ -108,10 +112,16 @@
                       </div>
                     </div>
               </div> --}}
-              <br>
-              <h1>{{this.feedback}}</h1>
-              <br>
-            {{/each}} 
+
+              <div class="container mt-4">
+              <div class="feedback">
+                <h1 style="font-weight: bold;">YOUR FEEDBACKS</h1>
+                  {{#each results}}
+                  <h5>{{this.feedback}}</h5>
+                  {{/each}} 
+              </div>
+
+            
           {{/if}}
             {{!-- <div class="col-3">
                 <div class="card" style="height: 600px;">

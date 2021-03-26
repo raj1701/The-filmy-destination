@@ -67,6 +67,8 @@ h1, h2, h3, h4 {
 .card{
     height: 550px;
     width: 330px;
+    margin : 1rem;
+    margin-bottom: 3rem;
 }
 
 .card-text{
@@ -102,4 +104,17 @@ a{
 
 p{
     text-align: center;
+}
+
+h5{
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.feedback{
+    height: fit-content; 
+    background-color: rgb(231, 231, 18);
+    padding: 1rem;
 }

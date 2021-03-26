@@ -107,9 +107,10 @@
 
           {{#if results_latest}}
             <h1 class="heading">LATEST CONTENT</h1>
-
+            <div class="row">
             
             {{#each results_latest}}
+
               <div class="col-3">
                 <div class="carousel-inner w-100" role="listbox">
                   <div class="card">
@@ -136,7 +137,7 @@
               </div>
           
             {{/each}} 
-    
+            </div>
           {{/if}}
 
           {{#if results_rating}}
