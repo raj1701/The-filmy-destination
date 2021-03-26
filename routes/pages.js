@@ -114,18 +114,18 @@ router.get('/feedback', (req,res) => {
 })
 router.post('/search', (req,res) => {
     let search_parameter = '%'+req.body.search_parameter+'%';
-    db.query("SELECT * FROM movies where title like ? limit 8",[search_parameter], async (error,results) => {
+    db.query("SELECT * FROM movies where title like ? limit 8",[search_parameter], async (error,results_search) => {
         if(error){
             console.log(error);
             res.send("Some error");
         }
         else {
-            console.log(results);
-            for(i in results){
-                results[i].rating_100=results[i].rating*10;
+            console.log(results_search);
+            for(i in results_search){
+                results_search[i].rating_100=results_search[i].rating*10;
             }
             res.render('landingpage',{
-                results : results,
+                results_search : results_search,
             });
         }
     });
