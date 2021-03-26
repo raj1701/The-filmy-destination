@@ -387,7 +387,9 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div> --}}
-
+        {{#unless results}}
+          <h1>No results</h1>
+        {{/unless}}
         <div class="container mt-4">
         <div class="jumbotron">
             <!--<h1 class="display-4">Login project</h1>-->
