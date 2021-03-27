@@ -1,11 +1,6 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
-        <!-- Meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
@@ -13,18 +8,11 @@
 
         <title>TFD Profile</title>
 
-        <!-- Links -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <!-- CSS Styles -->
         <link rel="stylesheet" href="/style_landing.css">
 
     </head>
     <body style="background-color: #56a8a8;">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <!-- NavBar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand">TFD</a>
@@ -54,15 +42,9 @@
               </div>
             </div>
         </nav>
-        <!-- Nav Bar END -->
-        {{!-- <div id="intro-page" class="container-fluid landing" style="height: 50px;">
-          <h1 class="intro-container">MOVIES DATABASE</h1>
-          <p>A Brief Description may be</p>
-        </div> --}}
 
         <hr>
         <div id="home"></div>
-        <!-- Content Body -->
 
           {{#if results_watched}}
             <div class="row">
@@ -83,7 +65,6 @@
                             <div class="progress-bar bg-success "  role="progressbar" style="width: {{this.rating_100}}%" aria-valuenow="{{this.rating}}" aria-valuemin="0" aria-valuemax="10"></div>
                           </div>
                         </li>
-                        {{!-- <li class="list-group-item">{{this.release_date}}</li> --}}
                       </ul>
                     </div>
               </div>
@@ -92,151 +73,14 @@
           {{/if}}
 
           {{#if results}}
-            
-          
-              {{!-- <div class="col-3">
-                  <div class="card" style="height: 600px;">
-                      
-                      <div class="card-body">
-                        <h5 class="card-title"><a href="/content/?title={{this.title}}">{{this.title}}</a></h5>
-                        <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{this.rating}}</li>
-                        <li class="list-group-item">{{this.release_date}}</li>
-                        <li class="list-group-item"></li>
-                      </ul>
-                      <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                      </div>
-                    </div>
-              </div> --}}
-
               <div class="container mt-4">
               <div class="feedback">
                 <h1 style="font-weight: bold;">YOUR FEEDBACKS</h1>
                   {{#each results}}
                   <h5>{{this.feedback}}</h5>
                   {{/each}} 
-              </div>
-
-            
+              </div>           
           {{/if}}
-            {{!-- <div class="col-3">
-                <div class="card" style="height: 600px;">
-                    <img src="https://www.joblo.com/assets/images/joblo/posters/2019/01/IO-poster-1.jpg" class="card-img-top custom-card-img" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Movie 2</h5>
-                      <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">4 star</li>
-                      <li class="list-group-item">Rajkumar Hirani</li>
-                      <li class="list-group-item">AAmir Khan</li>
-                    </ul>
-                    <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-3">
-                <div class="card" style="height: 600px;" >
-                    <img src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" class="card-img-top custom-card-img" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Movie 3</h5>
-                      <p class="card-text" style="height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa ab facere, dolorum soluta similique rem, quia atque nihil modi non deleniti esse! Praesentium tempore quas suscipit, quis accusamus optio natus!</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">4 star</li>
-                      <li class="list-group-item">Rajkumar</li>
-                      <li class="list-group-item">Rajkumar Rao</li>
-                    </ul>
-                    <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-3">
-                <div class="card" style="height: 600px;">
-                    <img src="https://www.washingtonpost.com/graphics/2019/entertainment/oscar-nominees-movie-poster-design/img/star-is-born-web.jpg" class="card-img-top custom-card-img" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Movie 4</h5>
-                      <p class="card-text" style="height: 100px;">Data</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">3 star</li>
-                      <li class="list-group-item">Salman Khan</li>
-                      <li class="list-group-item">Salman Khan</li>
-                    </ul>
-                    <div class="card-body">
-                      <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a>
-                    </div>
-                  </div>
-            </div>
-        </div> --}}
-
-      <!-- Pagination Code-->
-        {{!-- <nav aria-label="page navigation">
-            <ul class="pagination justify-content-center" style="margin-top: 20px;">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2 <!--<span class="sr-only">(current)</span>--></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav> --}}
-
-        <hr>
-        {{!-- <h3 id="home" style="color:#000; margin: 4rem;font-family:'Courier New', Courier, monospace;font-weight: bold;">FEEDBACK SECTION</h3> --}}
-
-        {{!-- <!-- Feedback Caraousel -->
-        <div id="carouselExampleIndicators" class="carousel slide carousel-box" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://media.npr.org/assets/img/2018/11/21/gettyimages-962142720-3f4af695a639cbc14deb90e88287cd3c19b676f4-s800-c85.jpg" class="d-block w-40 custom-carousel-img" alt="First Slide">
-              <div class="container carousel-text-container">
-                <p class="carousel-text">Facebook will fund this <br>-Mark Zuckerberg</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://content.fortune.com/wp-content/uploads/2015/03/9826_01_0153.jpg" class="d-block w-40 custom-carousel-img" alt="Second Slide">
-              <div class="container carousel-text-container">
-                <p class="carousel-text">Better than imdb tbh <br>-Tim Cook</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://specials-images.forbesimg.com/imageserve/5f3c43f344884ad1395da4f5/960x0.jpg?fit=scale" class="d-block w-40 custom-carousel-img" alt="Third Slide">
-              <div class="container carousel-text-container">
-                <p class="carousel-text">Amazing..<br>-Jeff Bejos</p>
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div> --}}
-        
-        <!-- JS Bootstrap Link -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
 

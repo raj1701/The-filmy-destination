@@ -11,49 +11,49 @@ const db = mysql.createConnection({
 
 
 exports.login = async (req,res) => {
-        const {username,password} = req.body;
-        if(!username || !password){
-            return res.status(400).render('login',{
-                message: 'Please provide email and password'
-            });
-        }
-        db.query('SELECT * FROM user WHERE username=?',[username], async (error,results) =>{
-            
-            if(error){
-                console.log(error);
-            }
-            else{
-                console.log(results);
-                if(results.length==0){
-                    res.status(401).render('login',{
-                        message:'Enter valid username'
-                    });
-                }
-                else if(!(await bcrypt.compare(password,results[0].password))){
-                    res.status(401).render('login',{
-                        message:'Username and password do not match'
-                    });
-                }
-                else {
-                    const id = results[0].id;
-                    const token = jwt.sign({id},process.env.JWT_SECRET,{
-                        expiresIn : process.env.JWT_EXPIRES_IN
-                    })
-                    console.log("The token is"+token);
-                    const cookieOptions = {
-                        expires : new Date(
-                            Date.now() + process.env.JWT_COOKIE_EXPIRES *24*60*60*1000
-                        ),
-                        httpOnly: true
-                    }
-                    res.cookie('jwt', token , cookieOptions );
-                    res.cookie("userid", id);
-                    // window.localStorage.setItem('userid', id);
-                    res.status(200).redirect("/landingpage");
-                }
-            }
-        
+    const {username,password} = req.body;
+    if(!username || !password){
+        return res.status(400).render('login',{
+            message: 'Please provide email and password'
         });
+    }
+    db.query('SELECT * FROM user WHERE username=?',[username], async (error,results) =>{
+        
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log(results);
+            if(results.length==0){
+                res.status(401).render('login',{
+                    message:'Enter valid username'
+                });
+            }
+            else if(!(await bcrypt.compare(password,results[0].password))){
+                res.status(401).render('login',{
+                    message:'Username and password do not match'
+                });
+            }
+            else {
+                const id = results[0].id;
+                const token = jwt.sign({id},process.env.JWT_SECRET,{
+                    expiresIn : process.env.JWT_EXPIRES_IN
+                })
+                console.log("The token is"+token);
+                const cookieOptions = {
+                    expires : new Date(
+                        Date.now() + process.env.JWT_COOKIE_EXPIRES *24*60*60*1000
+                    ),
+                    httpOnly: true
+                }
+                res.cookie('jwt', token , cookieOptions );
+                res.cookie("userid", id);
+                // window.localStorage.setItem('userid', id);
+                res.status(200).redirect("/landingpage");
+            }
+        }
+    
+    });
  
 
 }

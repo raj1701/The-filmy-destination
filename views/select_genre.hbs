@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    {{!-- <link rel="stylesheet" href="/style_feedback.css"> --}}
 </head>
 <body style="background-image: url(../pics/mainpageback.jpg);">
 
@@ -29,13 +28,6 @@
                     <a class="nav-link active" href="/profile" >Profile</a>
                   </li>
                 </ul>
-                {{!-- <form class="d-flex" action="/search" method="POST">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_parameter">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <form class="d-flex" action="/auth/logout" method="GET">
-                  <button class="btn btn-outline-success" type="submit">Logout</button>
-                </form> --}}
               </div>
             </div>
         </nav>
@@ -44,8 +36,6 @@
             <div class="card-body">
                 <form action="/genre_select" method="POST">
                     <div class="form-group">
-                        {{!-- <label for="username">Please enter the genre</label>
-                        <input type ="text" name="genre" width="25%" placeholder="Enter genre" id="feedback"></textarea> --}}
                         <div class="dropdown">
                           <button class="btn dropdown-toggle" type="form-input" data-toggle="dropdown" id="my_button">Select genre
                           <span class="caret"></span></button>
@@ -77,14 +67,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
       var x1;
-      //for(var i=0;i<=document.getElementsByClassName("my_button_options").length;i++)
-      //{
-      //  console.log("Im here");
-      //  x1=document.getElementsByClassName("my_button_options")[i].onclick (){
-
-      //  };
-      //  x1.onclick = handler();
-      //}
       function handler(x) {
         x1=document.getElementById("my_button");
         x1.innerText=x;

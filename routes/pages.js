@@ -36,7 +36,6 @@ router.get('/landingpage', (req,res) => {
             for(i in results_latest){
                 results_latest[i].rating_100=results_latest[i].rating*10;
             }
-            // var date =  results[0].recently_added;
             res.render('landingpage',{
                 results_latest : results_latest
             });
@@ -44,9 +43,6 @@ router.get('/landingpage', (req,res) => {
     });
 })
 
-// router.get('/contentpage', (req,res) => {
-//     res.render('contentpage');
-// })
 
 router.get('/content', (req,res) => {
     let title = req.query.title;
@@ -202,7 +198,6 @@ router.post('/genre_select', (req,res) => {
             res.send(error);
         }
         else{
-            //console.log(results_genre);
             for(i in results_genre){
                 results_genre[i].rating_100=results_genre[i].rating*10;
             }
